@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ServerWeapons">
+      <UniqueIdentifier>{1b9857ba-a7a0-4280-a8cf-31d97be34288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ServerWeapons\Client">
+      <UniqueIdentifier>{4f9efc12-b2bb-498e-a804-a436b28b169c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="from Client">
+      <UniqueIdentifier>{e0869fad-4410-4a24-ac8a-9ccfe6ee1798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="from NetPackets">
+      <UniqueIdentifier>{1d1fdc7a-11c5-4fc9-aa49-5a0d81916314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend">
+      <UniqueIdentifier>{f68d7fd7-83ee-40a3-bfe0-a67feafc297a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\ServerWeapons\MasterServerWeaponArmory.cpp">
+      <Filter>ServerWeapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\EclipseStudio\Sources\ObjectsCode\WEAPONS\BaseItemConfig.cpp">
+      <Filter>ServerWeapons\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\EclipseStudio\Sources\ObjectsCode\WEAPONS\WeaponConfig.cpp">
+      <Filter>ServerWeapons\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\EclipseStudio\Sources\Backend\WOBackendAPI.cpp">
+      <Filter>from Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MasterAsyncApiMgr.cpp" />
+    <ClCompile Include="Sources\MasterGameServer.cpp" />
+    <ClCompile Include="Sources\MasterServer.cpp" />
+    <ClCompile Include="Sources\MasterServerConfig.cpp" />
+    <ClCompile Include="Sources\MasterServerMain.cpp" />
+    <ClCompile Include="Sources\MasterUdpMonitor.cpp" />
+    <ClCompile Include="Sources\MasterUserServer.cpp" />
+    <ClCompile Include="Sources\SrvCrashHandler.cpp" />
+    <ClCompile Include="Sources\stdafx.cpp" />
+    <ClCompile Include="Sources\VersionNo.cpp" />
+    <ClCompile Include="Sources\AsyncFuncs.cpp" />
+    <ClCompile Include="Sources\Backend\ServerUserProfile.cpp">
+      <Filter>Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\EclipseStudio\Sources\GameCode\UserRewards.cpp">
+      <Filter>from Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\EclipseStudio\Sources\GameCode\UserProfile.cpp">
+      <Filter>from Client</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\ServerWeapons\MasterServerWeaponArmory.h">
+      <Filter>ServerWeapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\EclipseStudio\Sources\ObjectsCode\WEAPONS\BaseItemConfig.h">
+      <Filter>ServerWeapons\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\EclipseStudio\Sources\ObjectsCode\WEAPONS\WeaponConfig.h">
+      <Filter>ServerWeapons\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\EclipseStudio\Sources\Backend\WOBackendAPI.h">
+      <Filter>from Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerNetPackets\NetPacketsGameInfo.h">
+      <Filter>from NetPackets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerNetPackets\NetPacketsWeaponInfo.h">
+      <Filter>from NetPackets</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GameSlotInfo.h" />
+    <ClInclude Include="Sources\MasterAsyncApiMgr.h" />
+    <ClInclude Include="Sources\MasterGameServer.h" />
+    <ClInclude Include="Sources\MasterServer.h" />
+    <ClInclude Include="Sources\MasterServerConfig.h" />
+    <ClInclude Include="Sources\MasterUdpMonitor.h" />
+    <ClInclude Include="Sources\MasterUserServer.h" />
+    <ClInclude Include="Sources\SrvCrashHandler.h" />
+    <ClInclude Include="Sources\VersionNo.h" />
+    <ClInclude Include="Sources\AsyncFuncs.h" />
+    <ClInclude Include="Sources\Backend\ServerUserProfile.h">
+      <Filter>Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\EclipseStudio\Sources\GameCode\UserProfile.h">
+      <Filter>from Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\EclipseStudio\Sources\GameCode\UserRewards.h">
+      <Filter>from Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerNetPackets\NetPacketsMaster.h">
+      <Filter>from NetPackets</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

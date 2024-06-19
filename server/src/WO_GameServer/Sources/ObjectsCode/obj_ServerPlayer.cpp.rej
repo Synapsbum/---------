@@ -1,0 +1,68 @@
+diff a/server/src/WO_GameServer/Sources/ObjectsCode/obj_ServerPlayer.cpp b/server/src/WO_GameServer/Sources/ObjectsCode/obj_ServerPlayer.cpp	(rejected hunks)
+@@ -3784,51 +3784,27 @@
+ 		return;
+ 	}
+ 
+-	// minor hack, initialize Var1/Var2 for unitialized weapon
+-	// check if we need to modify starting ammo. (SERVER CODE SYNC POINT)
+-	if(bckItm.Var1 < 0) 
+-	{
+-		const WeaponAttachmentConfig* clipCfg = g_pWeaponArmory->getAttachmentConfig(wcfg->FPSDefaultID[WPN_ATTM_CLIP]);
+-		if(!clipCfg)
+-		{
+-			gServerLogic.LogCheat(peerId_, PKT_S2C_CheatWarning_s::CHEAT_Protocol, true, "unload",
+-				"no clip for: %d", bckItm.itemID);
+-			return;
+-		}
++	wiInventoryItem clipItm;
++	clipItm.itemID   = bckItm.Var2;
++	clipItm.quantity = 1;
++	clipItm.Var1     = bckItm.Var1;
+ 
+-		bckItm.Var1 = clipCfg->m_Clipsize;
+-		bckItm.Var2 = clipCfg->m_itemID;
+-	}
+-
+-	// place to backpack or drop current ammo clip (if have clip speficied and have ammo)
+-	if(bckItm.Var1 > 0 && bckItm.Var2 > 0)
++	if(BackpackAddItem(clipItm) == false)
+ 	{
+-		wiInventoryItem clipItm;
+-		clipItm.itemID   = bckItm.Var2;
+-		clipItm.quantity = 1;
+-		clipItm.Var1     = bckItm.Var1;
+-		clipItm.ResetClipIfFull();
+-
+-		if(BackpackAddItem(clipItm) == false)
+-		{
+-			obj_DroppedItem* obj = (obj_DroppedItem*)srv_CreateGameObject("obj_DroppedItem", "obj_DroppedItem", GetRandomPosForItemDrop());
+-			SetupPlayerNetworkItem(obj);
+-			// vars
+-			obj->m_Item = clipItm;
++		obj_DroppedItem* obj = (obj_DroppedItem*)srv_CreateGameObject("obj_DroppedItem", "obj_DroppedItem", GetRandomPosForItemDrop());
++		SetupPlayerNetworkItem(obj);
++		// vars
++		obj->m_Item = clipItm;
+ #ifdef MISSIONS
+-			if( m_MissionsProgress )
+-			{
+-				m_MissionsProgress->PerformItemAction( Mission::ITEM_Drop, obj->m_Item.itemID, obj->GetHashID() );
+-			}
+-#endif
++		if( m_MissionsProgress )
++		{
++			m_MissionsProgress->PerformItemAction( Mission::ITEM_Drop, obj->m_Item.itemID, obj->GetHashID() );
+ 		}
+-
+-		// empty clip
+-		bckItm.Var1 = 0;
++#endif
+ 	}
+ 
+-	// do not relay, this is useless packet.
+-	return;
++	// empty clip
++	bckItm.Var1 = 0;
+ }
+ 
+ void obj_ServerPlayer::OnNetPacket(const PKT_C2S_PlayerCombineClip_s& n)
