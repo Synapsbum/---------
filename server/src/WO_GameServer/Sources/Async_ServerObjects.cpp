@@ -8,6 +8,7 @@
 #include "Async_ServerObjects.h"
 
 extern	char*	g_ServerApiKey;
+//2
 
 void CJobGetServerObjects::parseObjects(pugi::xml_node xmlObj)
 {
