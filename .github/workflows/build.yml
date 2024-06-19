@@ -1,4 +1,4 @@
-name: Build2 WarZ_Server.sln
+name: Build WarZ_Server.sln
 
 on:
   push:
@@ -16,12 +16,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Visual Studio 2013
+    - name: Download Visual Studio 2013 ISO
       run: |
-        echo "Setting up Visual Studio 2013..."
-        choco install visualstudio2013community
+        curl -L -o vs2013.iso "https://archive.org/download/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332/en_visual_studio_community_2013_with_update_5_x86_dvd_6816332.iso"
+
+    - name: Mount ISO
+      run: |
+        PowerShell Mount-DiskImage -ImagePath $(System.DefaultWorkingDirectory)\vs2013.iso
+
+    - name: Install Visual Studio 2013
+      run: |
+        start /wait D:\setup.exe /Q
 
     - name: Build Solution with VS2013
       run: |
-        echo "Building solution with Visual Studio 2013..."
         "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe" "$(System.DefaultWorkingDirectory)/server/src/WarZ_Server.sln" /Build "Release"
